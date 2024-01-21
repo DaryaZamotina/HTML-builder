@@ -26,8 +26,7 @@ fs.readdir('./04-copy-directory/files', {withFileTypes: true}, (error, files) =>
           console.log("successful copying" + " "+ `${file.name}`);
         }
 
-      fs.copyFile(oldPathToEachFile, newPathToEachFile, COPYFILE_EXCL, callback);
+      fs.copyFile(oldPathToEachFile, newPathToEachFile, callback);
     });
-
 });
   
