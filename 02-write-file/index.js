@@ -24,6 +24,7 @@ let path = "02-write-file/text.txt";
     switch (line.trim()) {
         case 'exit':
             readLine.close();
+            console.log("Thank you for your attention! Bye!");
             break;
         default:
             sentence = line + '\n'
