@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const copyFile = require('fs');
 
-fs.mkdir(path.join(__dirname, 'files-copy'), (error) => {
+fs.mkdir(path.join(__dirname, 'files-copy'), {recursive: true}, (error) => {
     if (error) {
         console.log(error);
     }
@@ -17,13 +17,16 @@ fs.readdir('./04-copy-directory/files', {withFileTypes: true}, (error, files) =>
 
     files.forEach(function(file) {
     
-      const pathToEachFile = path.join('./04-copy-directory/files-copy', `${file.name}`);
+      const { COPYFILE_EXCL } = fs.constants;
+      const newPathToEachFile = path.join('./04-copy-directory/files-copy', `${file.name}`);
+      const oldPathToEachFile = path.join('./04-copy-directory/files', `${file.name}`);
 
       function callback(error) {
         if (error) throw error;
-          console.log("successful copying");
+          console.log("successful copying" + " "+ `${file.name}`);
         }
-      copyFile(`${file.name}`, pathToEachFile, callback);
+
+      fs.copyFile(oldPathToEachFile, newPathToEachFile, COPYFILE_EXCL, callback);
     });
 
 });
