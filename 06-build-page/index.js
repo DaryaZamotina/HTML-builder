@@ -39,8 +39,6 @@ fs.readdir(pathToStylesFolder, {withFileTypes: true}, (error, files) => {
       }
     });
 });
-
-
 /*
 fs.readdir('./06-build-page/assets', {withFileTypes: true}, (error, files) => {
     if (error) {
@@ -50,8 +48,9 @@ fs.readdir('./06-build-page/assets', {withFileTypes: true}, (error, files) => {
     console.log(files);
 
     files.forEach(function(file) {
-    if (file.isDirectory()) {
-      fs.readdir('./06-build-page/assets', {withFileTypes: true}, (error, filesInside) => {
+      const filesPath = path.join('./06-build-page/assets', `${file.name}`);
+
+      fs.readdir(filesPath, {withFileTypes: true}, (error, filesInside) => {
         if (error) {
           console.log(error);
           return;
@@ -69,9 +68,7 @@ fs.readdir('./06-build-page/assets', {withFileTypes: true}, (error, files) => {
           fs.copyFile(oldPathToEachFile, newPathToEachFile, callback);
         });
       });
-    }
     });
-})
-*/
+}) */
 
   
